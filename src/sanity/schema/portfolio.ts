@@ -130,9 +130,12 @@ export const portfolioType = defineType({
       of: [{ type: 'image', options: { hotspot: true } }],
     }),
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
+      name: 'video',
+      title: 'Video (Ad Creative)',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
     }),
     defineField({
       name: 'featured',
