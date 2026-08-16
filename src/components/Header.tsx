@@ -27,7 +27,7 @@ export function Header() {
     setMobileOpen(false);
   }, [location]);
 
-  const isHome = location.usePathname() === '/';
+  const isHome = location === '/';
   const showDark = isHome && !isScrolled;
 
   return (
@@ -51,7 +51,7 @@ export function Header() {
                 key={link.path}
                 href={link.path}
                 className={`text-sm font-medium transition-colors duration-200 ${
-                  location.usePathname() === link.path
+                  location === link.path
                     ? showDark ? 'text-white' : 'text-indigo'
                     : showDark ? 'text-white/70 hover:text-white' : 'text-gray-mid hover:text-ink'
                 }`}
@@ -95,7 +95,7 @@ export function Header() {
                 key={link.path}
                 href={link.path}
                 className={`text-xl font-medium font-[family-name:var(--font-display)] ${
-                  location.usePathname() === link.path ? 'text-indigo' : 'text-ink'
+                  location === link.path ? 'text-indigo' : 'text-ink'
                 }`}
               >
                 {link.label}
