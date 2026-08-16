@@ -1,9 +1,25 @@
 import Link from 'next/link';
 import { Star, ArrowRight } from 'lucide-react';
-import { testimonials } from '@/data/portfolio';
+import { client } from '@/sanity/lib/client';
+import { groq } from 'next-sanity';
 
-export default function Testimonials() {
-  const published = testimonials.filter(t => t.published);
+export const revalidate = 0; // Force dynamic rendering
+
+const getTestimonialsQuery = groq`
+  *[_type == "testimonial" && published == true] | order(_createdAt desc) {
+    _id,
+    "id": _id,
+    clientName,
+    industry,
+    quote,
+    rating,
+    "relatedPortfolioId": relatedPortfolio->_id,
+    published
+  }
+`;
+
+export default async function Testimonials() {
+  const published = await client.fetch(getTestimonialsQuery);
 
   return (
     <div>
@@ -26,7 +42,7 @@ export default function Testimonials() {
       <section className="py-12 sm:py-16 bg-ivory">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 gap-6">
-            {published.map(t => (
+            {published.map((t: any) => (
               <div key={t.id} className="bg-white rounded-2xl p-8 border border-gray-light card-hover">
                 {t.rating && (
                   <div className="flex gap-1 mb-4">
