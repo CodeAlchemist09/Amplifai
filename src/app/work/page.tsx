@@ -23,7 +23,7 @@ const getPortfolioItemsQuery = groq`
     liveUrl,
     "coverImage": coverImage.asset->url,
     "gallery": gallery[].asset->url,
-    videoUrl,
+    "videoUrl": videoUrl.asset->url,
     featured,
     published,
     order
