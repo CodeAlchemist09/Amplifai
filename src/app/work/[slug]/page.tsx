@@ -1,12 +1,15 @@
-"use client";
-import { useParams, notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ExternalLink, Play } from 'lucide-react';
-import { publishedItems } from '@/data/portfolio';
+import { client } from '@/sanity/lib/client';
+import { getPortfolioItemBySlugQuery } from '@/sanity/lib/queries';
 
-export default function CaseStudy() {
-  const { slug } = useParams<{ slug: string }>();
-  const item = publishedItems.find(i => i.slug === slug);
+export const revalidate = 0; // Force dynamic rendering so CMS changes appear instantly
+
+export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  
+  const item = await client.fetch(getPortfolioItemBySlugQuery, { slug });
 
   if (!item) {
     return notFound();
@@ -51,7 +54,7 @@ export default function CaseStudy() {
                 </div>
                 <div className="bg-white/10 rounded-lg px-4 py-2.5 backdrop-blur-sm">
                   <div className="text-white/40 text-xs uppercase tracking-wider">Services</div>
-                  <div className="text-white text-sm font-medium">{item.serviceType.join(', ')}</div>
+                  <div className="text-white text-sm font-medium">{item.serviceType?.join(', ')}</div>
                 </div>
                 {item.platform && (
                   <div className="bg-white/10 rounded-lg px-4 py-2.5 backdrop-blur-sm">
@@ -79,9 +82,9 @@ export default function CaseStudy() {
             </div>
 
             {/* Metrics cards */}
-            {item.metrics.length > 0 && (
+            {item.metrics && item.metrics.length > 0 && (
               <div className="flex flex-row lg:flex-col gap-4 shrink-0">
-                {item.metrics.map((metric, i) => (
+                {item.metrics.map((metric: any, i: number) => (
                   <div key={i} className="bg-white/10 rounded-xl p-5 backdrop-blur-sm text-center min-w-[120px]">
                     <div className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] text-lime mb-1">
                       {metric.value}
@@ -154,9 +157,9 @@ export default function CaseStudy() {
             </h2>
             <p className="text-gray-mid leading-relaxed text-lg mb-6">{item.result}</p>
             
-            {item.metrics.length > 0 && (
+            {item.metrics && item.metrics.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {item.metrics.map((metric, i) => (
+                {item.metrics.map((metric: any, i: number) => (
                   <div key={i} className="bg-white rounded-xl p-5 border border-gray-light text-center">
                     <div className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-indigo mb-1">
                       {metric.value}
@@ -169,13 +172,13 @@ export default function CaseStudy() {
           </div>
 
           {/* Gallery */}
-          {item.gallery.length > 0 && item.type === 'website' && (
+          {item.gallery && item.gallery.length > 0 && item.type === 'website' && (
             <div className="mb-12">
               <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-ink mb-6">
                 Gallery
               </h2>
               <div className="space-y-6">
-                {item.gallery.map((img, i) => (
+                {item.gallery.map((img: string, i: number) => (
                   <div key={i} className="rounded-xl overflow-hidden shadow-lg border border-gray-light">
                     <img src={img} alt={`${item.title} screenshot ${i + 1}`} className="w-full h-auto" loading="lazy" />
                   </div>
