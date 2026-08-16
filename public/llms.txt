@@ -1,0 +1,21 @@
+# Amplifai
+
+> Amplifai is a boutique AI studio that builds websites and ad creatives for
+> small and medium-sized businesses internationally, including salons, medical
+> spas, contractors, furniture and retail showrooms, and e-commerce brands.
+> Projects are custom-quoted; there are no fixed public price packages.
+
+## Services
+- Website design and development (AI-accelerated, human-refined)
+- Ad creative production (educational, UGC-style, and platform-native video
+  ads for Meta, TikTok, and other platforms)
+- Combined website + ad creative bundles for consistent brand launches
+
+## Key Pages
+- /work — Portfolio of website and ad creative projects, filterable by type and industry
+- /services — Service descriptions and FAQ
+- /about — Studio background, process, and founder information
+- /contact — Project inquiry form; replies within 24 hours
+
+## Contact
+Inquiries: via the form at /contact
