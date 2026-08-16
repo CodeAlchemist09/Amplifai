@@ -17,6 +17,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = usePathname();
 
+  if (location.startsWith('/studio')) return null;
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
