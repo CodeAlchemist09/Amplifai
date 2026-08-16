@@ -25,7 +25,7 @@ const getPortfolioItemBySlugQuery = groq`
     liveUrl,
     "coverImage": coverImage.asset->url,
     "gallery": gallery[].asset->url,
-    videoUrl,
+    "videoUrl": videoUrl.asset->url,
     featured,
     published,
     order
@@ -134,16 +134,15 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               {/* Phone frame for vertical video */}
               <div className="bg-ink rounded-[2.5rem] p-3 shadow-2xl">
                 <div className="bg-gray-mid/30 rounded-[2rem] overflow-hidden aspect-[9/16] flex items-center justify-center relative">
-                  <img
-                    src={item.coverImage}
-                    alt={item.title}
+                  <video
+                    src={item.videoUrl}
+                    poster={item.coverImage}
+                    controls
+                    playsInline
                     className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-ink/30">
-                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
-                      <Play className="w-7 h-7 text-ink ml-1" fill="currentColor" />
-                    </div>
-                  </div>
+                  >
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>
