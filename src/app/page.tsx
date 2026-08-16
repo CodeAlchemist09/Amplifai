@@ -27,7 +27,7 @@ const getFeaturedPortfolioItemsQuery = groq`
     liveUrl,
     "coverImage": coverImage.asset->url,
     "gallery": gallery[].asset->url,
-    "videoUrl": videoUrl.asset->url,
+    "videoUrl": video.asset->url,
     featured,
     published,
     order
