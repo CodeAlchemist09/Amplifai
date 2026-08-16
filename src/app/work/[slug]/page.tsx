@@ -2,7 +2,7 @@
 import { useParams, notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ExternalLink, Play } from 'lucide-react';
-import { publishedItems } from '../data/portfolio';
+import { publishedItems } from '@/data/portfolio';
 
 export default function CaseStudy() {
   const { slug } = useParams<{ slug: string }>();

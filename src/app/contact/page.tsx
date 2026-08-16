@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Star, Send } from 'lucide-react';
-import { testimonials } from '../data/portfolio';
+import { testimonials } from '@/data/portfolio';
 
 const industries = [
   'Salon & Beauty',

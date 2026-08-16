@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Star, ArrowRight } from 'lucide-react';
-import { testimonials } from '../data/portfolio';
+import { testimonials } from '@/data/portfolio';
 
 export default function Testimonials() {
   const published = testimonials.filter(t => t.published);

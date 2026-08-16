@@ -20,7 +20,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { featuredItems, testimonials } from '../data/portfolio';
+import { featuredItems, testimonials } from '@/data/portfolio';
 
 const industries = [
   { icon: Scissors, label: 'Salon & Beauty' },

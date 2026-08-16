@@ -2,8 +2,8 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Play, ArrowRight } from 'lucide-react';
-import { publishedItems } from '../data/portfolio';
-import type { Industry } from '../data/types';
+import { publishedItems } from '@/data/portfolio';
+import type { Industry } from '@/data/types';
 
 type FilterType = 'all' | 'website' | 'ad_creative';
 
