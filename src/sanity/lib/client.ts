@@ -1,0 +1,13 @@
+import { createClient } from 'next-sanity';
+
+export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01';
+export const dataset = 'production';
+export const projectId = 'umdzlb31';
+export const useCdn = false; // Set to false if statically generating pages, using ISR or tag-based revalidation
+
+export const client = createClient({
+  apiVersion,
+  dataset,
+  projectId,
+  useCdn,
+});
